@@ -32,7 +32,7 @@ function Movies() {
       <div className=" flex justify-start w-[300px] items-center sm:w-full sm:justify-center mt-12">
         
          
-            <img  onClick={(e) => next_fnx('Prev')}   className='h-[50px] hover:scale-120 transition-all duration-500 cursor-pointer ' src='left-chevron (1).png'/>
+            <img  onClick={(e) => next_fnx('Prev')}   className='h-[50px] hover:scale-120 transition-all duration-500 cursor-pointer ' src='left-chevron (1).webp'/>
         
        
 
@@ -73,7 +73,7 @@ function Movies() {
         </div>
 
         
-        <img className="h-[50px] cursor-pointer hover:scale-120 transition-all duration-500 "   src='chevron-right.png'  onClick={(e) => next_fnx('Next')}/>
+        <img className="h-[50px] cursor-pointer hover:scale-120 transition-all duration-500 "   src='chevron-right.webp'  onClick={(e) => next_fnx('Next')}/>
        
 
 
