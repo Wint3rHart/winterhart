@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useGeneralStore from './useGeneralStore';
 import { shallow } from 'zustand/shallow';
 import useSignStore from './useSignStore';
 import useSearch from './useSearch';
+import gsap from 'gsap';
 
 function NavBar() {
   let nav = useNavigate();
@@ -19,6 +20,11 @@ function NavBar() {
   let value=useGeneralStore(state=>state.data.getValue)
 let search=useSearch(value)
 
+let ref=useRef([]);
+
+useEffect(()=>{ console.log(document.querySelectorAll(".animate"));
+;gsap.from('.animate',{y:-100,duration:1,stagger:.2})
+},[])
 
 const search_fnx=(x)=>{
 
@@ -41,16 +47,16 @@ const search_fnx=(x)=>{
 
   return (
     <div className=" text-xs rounded-sm font-sans border-2 hover:bg-red-800/50 transition-all duration-500 cursor-pointer  border-red-900/50 bg-red-800/25 outline-red-500 hover:border-gray-400 sm:w-full flex sm:text-xl justify-evenly items-center py-2 -mt-8 relative   ">
-      <span className="cursor-pointer hover:scale-105 transition-all duration-100 transition-all duration-500" onClick={() => nav('/movies')}>Home</span>
-      <span className="cursor-pointer hover:scale-105 transition-all duration-100 transition-all duration-500" onClick={() => nav('/register')}>Sign In/Up</span>
-     <div className='group mt-4 h-10  '><span className=' z-10' >
+      <span  className="animate  cursor-pointer hover:scale-105 " onClick={() => nav('/movies')}>Home</span>
+      <span  className="animate   cursor-pointer hover:scale-105 " onClick={() => nav('/register')}>Sign In/Up</span>
+     <div  className='animate group mt-4 h-10  '><span className=' z-10' >
         {status ? <span className="font-bold">{status.toUpperCase()}</span> : "Not Logged In"}
       </span>
-      <ul className={`mt-4 -translate-y-14 group-hover:translate-y-0 group-hover:opacity-100 group-hover:h-17 group-hover:bg-red-900/85 opacity-0 h-0  border border-red-500 absolute  list-none left-[390px] transition-all duration-500 transform} `}>
-        <li className={`w-24 mx-auto cursor-pointer mt-2 z-0 text-base`} onClick={() => nav(`/user/${encodeURIComponent(logged_id)}`)}>View Profile</li>
-        <li className={`w-24 mx-auto cursor-pointer mt-1  z-0 text-base`} onClick={() => status_fnx(false)}>Sign Out</li>
+      <ul className={` animate  mt-4 -translate-y-14 group-hover:translate-y-0 group-hover:opacity-100 group-hover:h-17 group-hover:bg-red-900/85 opacity-0 h-0  border border-red-500 absolute  list-none left-[390px] transition-all duration-500 transform} `}>
+        <li className={` animate w-24 mx-auto cursor-pointer mt-2 z-0 text-base`} onClick={() => nav(`/user/${encodeURIComponent(logged_id)}`)}>View Profile</li>
+        <li className={` animate w-24 mx-auto cursor-pointer mt-1  z-0 text-base`} onClick={() => status_fnx(false)}>Sign Out</li>
       </ul></div> 
-      <select className={`border p-1 border-2 border-red-500/50 rounded-lg`}  onChange={(e) => setValue({category:e.target.value,type:"movie"})}>
+      <select  className={`animate border p-1 border-2 border-red-500/50 rounded-lg`}  onChange={(e) => setValue({category:e.target.value,type:"movie"})}>
         <option   className='bg-black text-red'>All</option>
         <option   className='bg-black    text-red'>Action</option>
         <option   className='bg-black    text-red'>Drama</option>

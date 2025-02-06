@@ -1,26 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import useData from './useData';
 import { Outlet, useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
 import useGeneralStore from './useGeneralStore';
+import gsap from 'gsap';
 
 function Movies() {
   let value = useGeneralStore(state => state.data.getValue);
 
   let { data, isLoading } = useData(value.category, value.type);
-  
+  let ref=useRef([]);
   let [count, setCount] = useState(0);
   let nav = useNavigate();
 
   console.log('Movies component re-rendered');
 
   const next_fnx = (x) => {
-    setCount(a => x === 'Next' ? (a + 1) % (data.length ) : (a > 1 ? a - 1 : data.length-1));
+    setCount(a => x === 'Next' ? (a + 1) % (data.length ) : (a > 1 ? a - 1 : data.length-1))
   };
 
   const book_fnx = (x) => {
     nav(`/movies/seats/${encodeURIComponent(x._id)}?screen=1`);
   };
+useEffect(()=>{ref.current.forEach((x)=>{gsap.from(x,{ opacity:0,duration:1,stagger:true  })     }  ) ;      },[])
 
   useEffect(() => {
     console.log(count);
@@ -40,8 +42,8 @@ function Movies() {
           <div className="flex justify-start w-[450px]  sm:w-[1000px]   " style={{ transform: `translateX(-${count * 50}%)`, transition: 'all 1s' }}>
             {isLoading ? 'Loading...' : data.map((x, i) => (
              <div key={i} className="w-1/2   text-center sm:w-1/2 flex-shrink-0 relative">
-              <div className='group'>
-             <img 
+              <div ref={(e)=>{ ref.current[i]=e }} className='group'>
+             <img  
                src={`/${x.path}`} 
                className="h-[350px] w-full sm:w-[550px] sm:h-[600px] sm:border-2 group-hover:brightness-50 
                           border-red-900 rounded-lg group-hover:border-gray-300 transition-all duration-1000 

@@ -61,7 +61,7 @@ const search_fnx=(x)=>{  setSearchQuery((y)=>{return {...y,screen:x}})  }
 
     <div className="border-2 relative border-red-500  rounded-xl hover:bg-gray-900/20 cursor-pointer hover:scale-98 hover:border-gray-600/50 transition-all duration-1000  w-[540px] p-6 mx-auto">
   
-   <div onClick={(e)=>{search_fnx(e.target.value)}}> <button value="1" >Screen 1</button>  <button value='2' >Screen 2 </button>  <button value="3" >Screen 3</button> </div>
+   <div className='absolute top-10 ' onClick={(e)=>{search_fnx(e.target.value)}}> <button className="group  transition-all duration-1000 relative bg-stone-900/50  text-white-100 font-semibold hover:text-white py-1 px-3 border border-red-600 hover:border-gray-200 rounded-xl z-1" value="1" >Screen 1</button>  <button className="group  transition-all duration-1000 relative bg-stone-900/50  text-white-100 font-semibold hover:text-white py-1 px-3 border border-red-600 hover:border-gray-200 rounded-xl z-1" value='2' >Screen 2 </button>   </div>
       <button className="group  transition-all duration-1000 relative bg-stone-900/50  text-white-100 font-semibold hover:text-white py-2 px-4 border border-red-600 hover:border-gray-200 rounded-xl z-1" onClick={() => nav('/movies')}>
         Back
       </button>
