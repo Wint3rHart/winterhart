@@ -4,6 +4,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
 import useGeneralStore from './useGeneralStore';
 import gsap from 'gsap';
+import Stats from './stats';
 
 function Movies() {
   let value = useGeneralStore(state => state.data.getValue);
@@ -22,7 +23,7 @@ function Movies() {
   const book_fnx = (x) => {
     nav(`/movies/seats/${encodeURIComponent(x._id)}?screen=1`);
   };
-useEffect(()=>{ref.current.forEach((x)=>{gsap.from(x,{ opacity:0,duration:1,stagger:true  })     }  ) ;      },[])
+useEffect(()=>{ref.current.forEach((x)=>{gsap.from(x,{ opacity:0,duration:1,stagger:true  })     }  )          },[])
 
   useEffect(() => {
     console.log(count);
@@ -31,6 +32,7 @@ useEffect(()=>{ref.current.forEach((x)=>{gsap.from(x,{ opacity:0,duration:1,stag
   return (
     <>
       <NavBar />
+      <Stats/>
       <div className=" flex justify-start w-[300px] items-center sm:w-full sm:justify-center mt-12">
         
          

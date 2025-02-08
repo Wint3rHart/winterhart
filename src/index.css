@@ -1,4 +1,8 @@
 @import "tailwindcss";
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* You can now use 'Orbitron' in your classes */
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

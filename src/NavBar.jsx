@@ -5,6 +5,9 @@ import { shallow } from 'zustand/shallow';
 import useSignStore from './useSignStore';
 import useSearch from './useSearch';
 import gsap from 'gsap';
+    
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 function NavBar() {
   let nav = useNavigate();
@@ -13,7 +16,7 @@ function NavBar() {
 
  
   let setValue = useGeneralStore(state => state.fnx.setGetValue);
-  
+  let show=useGeneralStore(state=> state.fnx.setShow);
   let logged_id = useSignStore(state => state.fields.logged_id);
   let status_fnx = useSignStore(state => state.fnx.setToken);
   let status = useSignStore(state => state.fields.status);
@@ -46,15 +49,16 @@ const search_fnx=(x)=>{
   }, []);
 
   return (
-    <div className=" text-xs rounded-sm font-sans border-2 hover:bg-red-800/50 transition-all duration-500 cursor-pointer  border-red-900/50 bg-red-800/25 outline-red-500 hover:border-gray-400 sm:w-full flex sm:text-xl justify-evenly items-center py-2 -mt-8 relative   ">
+    <div className=" text-xs rounded-sm font-sans border-b border-t  hover:bg-red-800/50 transition-all duration-500 cursor-pointer  border-red-900/50 bg-red-800/25  hover:border-gray-400 sm:w-full flex sm:text-xl justify-evenly items-center py-2 -mt-8 relative   ">
+     <span className="animate  cursor-pointer hover:scale-105 " onClick={()=>{show()}}>Stats</span>   
       <span  className="animate  cursor-pointer hover:scale-105 " onClick={() => nav('/movies')}>Home</span>
       <span  className="animate   cursor-pointer hover:scale-105 " onClick={() => nav('/register')}>Sign In/Up</span>
      <div  className='animate group mt-4 h-10  '><span className=' z-10' >
         {status ? <span className="font-bold">{status.toUpperCase()}</span> : "Not Logged In"}
       </span>
-      <ul className={` animate  mt-4 -translate-y-14 group-hover:translate-y-0 group-hover:opacity-100 group-hover:h-17 group-hover:bg-red-900/85 opacity-0 h-0  border border-red-500 absolute  list-none left-[390px] transition-all duration-500 transform} `}>
-        <li className={` animate w-24 mx-auto cursor-pointer mt-2 z-0 text-base`} onClick={() => nav(`/user/${encodeURIComponent(logged_id)}`)}>View Profile</li>
-        <li className={` animate w-24 mx-auto cursor-pointer mt-1  z-0 text-base`} onClick={() => status_fnx(false)}>Sign Out</li>
+      <ul className={` animate bg-black  mt-5 -translate-y-17 group-hover:translate-y-0  group-hover:opacity-100 group-hover:h-10  flex   opacity-0 h-0  border border-red-500 absolute  list-none items-center transition-all duration-500 transform} `}>
+        <li className={` animate w-24 mx-auto cursor-pointer mt-2 z-1 text-base`} onClick={() => nav(`/user/${encodeURIComponent(logged_id)}`)}>View Profile</li>
+        <li className={` animate w-24 mx-auto cursor-pointer mt-1  z-1 text-base`} onClick={() => status_fnx(false)}>Sign Out</li>
       </ul></div> 
       <select  className={`animate border p-1 border-2 border-red-500/50 rounded-lg`}  onChange={(e) => setValue({category:e.target.value,type:"movie"})}>
         <option   className='bg-black text-red'>All</option>

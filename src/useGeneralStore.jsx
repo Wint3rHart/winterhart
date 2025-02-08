@@ -8,9 +8,11 @@ const useGeneralStore = create(subscribeWithSelector(immer( (set, get) => {
     return {
         data: {
             getValue:{category: 'All',type:"movie"},
-            seats_data: [],index:[]
+            seats_data: [],index:[],
+            show:false
         },
         fnx: {
+            setShow:()=>{set((state)=>{ return {...state,data:{...state.data,show:!state.data.show}} })},
             setGetValue: (x) => {
                 console.log('setting');
                 ; set((state) => { return { ...state, data: { ...state.data, getValue:{...state.data.getValue,category:x.category,type:x.type,signal:x.signal} } } })
